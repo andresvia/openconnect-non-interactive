@@ -64,15 +64,15 @@ then
   err=$((err+8))
 fi
 
-if [ ! -s "$VPN_PASS_FILE" ]
+if [ ! -f "$VPN_PASS_FILE" ]
 then
-  echo "$VPN_PASS_FILE not a valid file"
+  echo "$VPN_PASS_FILE not a file"
   err=$((err+16))
 fi
 
-if [ ! -s "$VPN_PASS_ENC_FILE" ]
+if [ ! -f "$VPN_PASS_ENC_FILE" ]
 then
-  echo "$VPN_PASS_ENC_FILE not a valid file"
+  echo "$VPN_PASS_ENC_FILE not a file"
   err=$((err+32))
 fi
 
@@ -100,13 +100,16 @@ fi
 
 if ! readlink "$0" > /dev/null 2>&1
 then
+  echo
   echo "$0 not a symlink"
   echo "create a symlink vpn.example.com.sh -> $0"
+  echo
   err=$((err+9))
 fi
 
 if ! openssl aes-256-cbc -pass "file:$VPN_PASS_ENC_FILE" -d '-out' /dev/null '-in' "$VPN_PASS_FILE" > /dev/null 2>&1
 then
+  echo
   echo "$VPN_PASS_ENC_FILE cannot be used to decrypt your password at $VPN_PASS_FILE"
   echo "encrypt $VPN_PASS_FILE by"
   echo "filling $VPN_PASS_ENC_FILE with random data"
@@ -119,6 +122,7 @@ then
   echo "    $ openssl aes-256-cbc -pass 'file:$VPN_PASS_ENC_FILE' -out '$VPN_PASS_FILE'"
   echo
   echo "type password (warning will be echoed!), press enter, then CTRL+D"
+  echo
   err=$((err+17))
 fi
 
