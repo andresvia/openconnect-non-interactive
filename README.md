@@ -14,7 +14,10 @@ This wrapper can be used as replacement for the Cisco AnyConnect client. With a 
 
 The wrapper is mostly self documented, so I will drive a typical session to ilustrate how to use it.
 
-1. Git clone this repo and `cd` to it then run the wrapper for the first time
+Typical session
+---------------
+
+### Git clone this repo and cd to it then run the wrapper for the first time ###
 
 ```
 git clone git@github.com:andresvia/openconnect-non-interactive.git
@@ -31,8 +34,7 @@ define VPN_PASS_ENC_FILE env var
 define OPENCONNECT_EXTRA_PARAMS_FILE env var
 ```
 
-2. Let's define the variables and put some content on them and run the wrapper again. The `OPENCONNECT\_EXTRA\_PARAMS\_FILE`
-   is optional and will be explained later
+### Let's define the variables and put some content on them and run the wrapper again. The OPENCONNECT\_EXTRA\_PARAMS\_FILE is optional and will be explained later ###
 
 On your `~/.profile`
 
@@ -73,7 +75,7 @@ type password (warning will be echoed!), press enter, then CTRL+D
 
 ```
 
-3. Let's create a symlink to determine the VPN to connect, and create the password key and the encrypted password file. Tip: copy paste the commands given in your output, then run the symlink to the wrapper.
+### Create a symlink to determine the VPN to connect, and create the password key and the encrypted password file. Tip: copy paste the commands given in your output, then run the symlink to the wrapper ###
 
 ```
 ln -s start_vpn.sh vpn.example.com.sh
@@ -83,7 +85,7 @@ openssl aes-256-cbc -pass "file:$VPN_PASS_ENC_FILE" -out "$VPN_PASS_FILE"
 ./vpn.example.com.sh
 ```
 
-4. Creating an extra parameters file
+### Creating an extra parameters file ###
 
 In your `~/.profile`
 
@@ -107,7 +109,7 @@ Create the file accordingly. Useful use cases for the extra parameters file are:
  - VPN servers with invalid SSL certificates there is a flag on OpenConnect for that (check the man page)
  - VPN servers where you need to connect to an authorization group that is not the default given
 
-5. Loging and debuging
+### Loging and debuging ###
 
  - The log file `/tmp/start\_vpn-YOURUSER-YOURVPN.log` is created with the output of the OpenConnect command.
  - Start the wrapper in foreground mode, passing the `foreground`, `fg`, or `f`, parameter
