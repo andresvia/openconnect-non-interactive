@@ -111,7 +111,7 @@ Create the file accordingly. Useful use cases for the extra parameters file are:
 
 ### Loging and debuging ###
 
- - The log file `/tmp/start\_vpn-YOURUSER-YOURVPN.log` is created with the output of the OpenConnect command.
+ - The log file `/tmp/start_vpn-YOURUSER-YOURVPN.log` is created with the output of the OpenConnect command.
  - Start the wrapper in foreground mode, passing the `foreground`, `fg`, or `f`, parameter
 
 ```
